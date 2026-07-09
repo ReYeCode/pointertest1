@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Record &mdash; Demonlist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand"><span class="dot"></span>DEMON<span>LIST</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Demonlist</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="submit.html" class="active">Submit Record</a>
+      <a href="guidelines.html">Guidelines</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="page">
+    <div class="page-heading">
+      <h1>Submit a Record</h1>
+      <p>Fill in your run details below. Read the guidelines first if you're unsure what counts as valid footage.</p>
+    </div>
+
+    <form class="form-panel" id="submit-form">
+      <div class="field">
+        <label for="player-name">Your Name</label>
+        <input type="text" id="player-name" required placeholder="In-game name" />
+      </div>
+
+      <div class="field">
+        <label for="level-name">Level</label>
+        <select id="level-name" required></select>
+      </div>
+
+      <div class="field">
+        <label for="percent">Progress</label>
+        <input type="number" id="percent" min="1" max="100" required placeholder="e.g. 100" />
+        <div class="hint">Enter your best percent on this level. Use 100 for a full completion.</div>
+      </div>
+
+      <div class="field">
+        <label for="video-link">Video Link</label>
+        <input type="url" id="video-link" required placeholder="https://youtube.com/watch?v=..." />
+      </div>
+
+      <div class="field">
+        <label for="raw-link">Raw Footage (optional)</label>
+        <input type="url" id="raw-link" placeholder="Link to unedited footage, if requested" />
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="Anything the reviewer should know, e.g. device used, mods active"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit for Review</button>
+
+      <div class="form-message" id="form-message"></div>
+    </form>
+  </main>
+
+  <footer>
+    Fan-made ranking, not affiliated with RobTop Games. Built by the community, for the community.
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script>
+    const select = document.getElementById("level-name");
+    select.innerHTML = DEMONLIST.map(d => `<option value="${d.name}">#${d.rank} &mdash; ${d.name}</option>`).join("");
+
+    const form = document.getElementById("submit-form");
+    const message = document.getElementById("form-message");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const percent = parseInt(document.getElementById("percent").value, 10);
+
+      if (percent < 1 || percent > 100) {
+        message.textContent = "Progress has to be a number between 1 and 100.";
+        message.className = "form-message show error";
+        return;
+      }
+
+      message.textContent = "This form doesn't send anywhere yet, it's a static demo. Wire it up to your own API to accept real submissions, see the README for a walkthrough.";
+      message.className = "form-message show success";
+    });
+  </script>
+</body>
+</html>

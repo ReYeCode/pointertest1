@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard &mdash; Demonlist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand"><span class="dot"></span>DEMON<span>LIST</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Demonlist</a>
+      <a href="leaderboard.html" class="active">Leaderboard</a>
+      <a href="submit.html">Submit Record</a>
+      <a href="guidelines.html">Guidelines</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="page">
+    <div class="page-heading">
+      <h1>Leaderboard</h1>
+      <p>Players ranked by total points earned across every demon they've beaten.</p>
+    </div>
+
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>Hardest Demon</th>
+          <th>Completions</th>
+          <th style="text-align: right;">Score</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-body"></tbody>
+    </table>
+  </main>
+
+  <footer>
+    Fan-made ranking, not affiliated with RobTop Games. Built by the community, for the community.
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script>
+    const board = buildLeaderboard();
+    const body = document.getElementById("leaderboard-body");
+
+    if (!board.length) {
+      body.innerHTML = `<tr><td colspan="5"><div class="empty-state">No records yet. Be the first to submit one.</div></td></tr>`;
+    } else {
+      body.innerHTML = board.map((player, i) => `
+        <tr>
+          <td class="lb-rank ${i === 0 ? "top-1" : i === 1 ? "top-2" : i === 2 ? "top-3" : ""}">#${i + 1}</td>
+          <td class="lb-name">${player.name}</td>
+          <td>${player.hardest ? player.hardest.name : "&mdash;"}</td>
+          <td>${player.completions}</td>
+          <td class="lb-score">${player.score.toLocaleString()}</td>
+        </tr>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

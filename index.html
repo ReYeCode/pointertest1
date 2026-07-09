@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demonlist &mdash; The Official Ranking</title>
+  <meta name="description" content="A community-driven ranking of the hardest levels in Geometry Dash." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand"><span class="dot"></span>DEMON<span>LIST</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="active">Demonlist</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="submit.html">Submit Record</a>
+      <a href="guidelines.html">Guidelines</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="page">
+    <div class="page-heading">
+      <h1>The Demonlist</h1>
+      <p>Ranked by difficulty. Click a level on the right to see its records, verifier and points.</p>
+    </div>
+
+    <div class="list-layout">
+      <div class="showcase" id="showcase"></div>
+
+      <div class="sidebar">
+        <div class="sidebar-header">Rank</div>
+        <div class="demon-list" id="demon-list"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Fan-made ranking, not affiliated with RobTop Games. Built by the community, for the community.
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/list.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
